@@ -26,22 +26,16 @@
 </head>
 <style>
     /* Add custom styles here */
-    /* body {
-        background-image: url('your-background-image.jpg');
-        background-size: cover;
-        background-position: center;
-        height: 100vh;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    } */
+    body {
+        background-color: #f0f0f0;
+    }
 
-    .login-container {
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 20px;
-        border-radius: 10px;
+    .product-card {
+        background-color: #fff;
+        border-radius: 5px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        margin: 20px;
     }
 </style>
 
@@ -180,36 +174,56 @@
     <!-- Page Header Start -->
     <div class="container-fluid bg-secondary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-            <h1 class="font-weight-semi-bold text-uppercase mb-3">Login page</h1>
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Price compare</h1>
             <div class="d-inline-flex">
                 <p class="m-0"><a href="">Home</a></p>
                 <p class="m-0 px-2">-</p>
-                <p class="m-0">Login</p>
+                <p class="m-0">Compare the price</p>
             </div>
         </div>
     </div>
+
     <!-- Page Header End -->
-   <!-- login -->
-   <div class="container">
-    <div class="row">
-        <div class="col-md-4 offset-md-4">
-            <div class="login-container">
-                <h2 class="text-center">Login</h2>
-                <form>
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="Enter your username">
+    <!-- compare price -->
+    <div class="container">
+        <div class="row">
+            <!-- Product Cards -->
+            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>$123.00</h6>
+                            <h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Login</button>
-                </form>
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="img/product-2.jpg" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>$123.00</h6>
+                            <h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <button class="btn btn-sm text-dark p-0 compare-btn" data-product="1">Compare</button>
+                        <button class="btn btn-sm text-dark p-0 read-reviews-btn" data-product="1">Read Reviews</button>
+                    </div>
+                </div>
             </div>
+            <!-- Add more product cards here -->
         </div>
     </div>
-</div>
+           
+
+
+
 
     <!-- Shop Start -->
     <div class="container-fluid pt-5">
@@ -630,6 +644,43 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Sample product data (replace with actual data)
+        const products = [
+            {
+                name: "Colorful Stylish Shirt",
+                price: 123.00,
+                image: "img/product-1.jpg",
+                reviews: ["Review 1 for Product 1", "Review 2 for Product 1"],
+            },
+            // Add more product data here
+        ];
+
+        // Event listeners for Compare and Read Reviews buttons
+        const compareButtons = document.querySelectorAll(".compare-btn");
+        const reviewsButtons = document.querySelectorAll(".read-reviews-btn");
+
+        compareButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const productId = button.getAttribute("data-product");
+                // Implement comparison logic here
+                alert(`Comparing Product ${productId}`);
+            });
+        });
+
+        reviewsButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const productId = button.getAttribute("data-product");
+                // Implement review reading logic here
+                const product = products[productId - 1];
+                alert(`Reading reviews for ${product.name}: ${product.reviews.join(', ')}`);
+            });
+        });
+    </script>
 </body>
 
 </html>
